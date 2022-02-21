@@ -1,3 +1,9 @@
+/**
+ * Kotlin Coroutines: Creating coroutine using GlobalScope: app - program
+ * @author Nguyen Truong Thinh
+ * @since Kotlin 1.6 - Java 1.8 (Java 8)
+ * Contact me: nguyentruongthinhvn2020@gmail.com || +84393280504
+ * */
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -5,6 +11,7 @@ import kotlinx.coroutines.launch
 fun main(args: Array<String>) {
     orderMeal()
 }
+
 /*
 * Creating simple coroutine using GlobalScope.launch function
 * */
@@ -21,4 +28,3 @@ fun orderMeal() {
     println("Next order please!")
     Thread.currentThread().join()
 }
-

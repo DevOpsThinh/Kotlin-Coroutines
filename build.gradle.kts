@@ -10,6 +10,7 @@ version = "1.0"
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
@@ -20,6 +21,9 @@ dependencies {
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-swing:1.6.0")
+
+    // Anko Coroutines
+    implementation ("org.jetbrains.anko:anko-coroutines:0.10.8")
 }
 
 tasks.withType<KotlinCompile> {
