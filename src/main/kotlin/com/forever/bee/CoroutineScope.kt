@@ -31,6 +31,17 @@ import kotlinx.coroutines.Dispatchers.Default
 //    Thread.currentThread().join()
 //}
 
+//fun main() {
+//    return runBlocking {
+//        repeat(100_000) {
+//            launch {
+//                delay(3000)
+//                println("Preparing order $it")
+//            }
+//        }
+//    }
+//}
+
 /**
  * Creating simple coroutine using CoroutineScope & try to observe the name
  * */
@@ -48,3 +59,4 @@ fun main() {
     println("Thread: (${Thread.currentThread().name}) Next order please!")
     Thread.currentThread().join()
 }
+

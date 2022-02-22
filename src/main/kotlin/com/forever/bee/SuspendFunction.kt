@@ -1,5 +1,5 @@
 /**
- * Kotlin Coroutines: Creating a Job
+ * Kotlin Coroutines:  Suspending a function
  * @author Nguyen Truong Thinh
  * @since Kotlin 1.6 - Java 1.8 (Java 8)
  * Contact me: nguyentruongthinhvn2020@gmail.com || +84393280504
@@ -16,11 +16,21 @@ import kotlin.random.Random
 fun main() {
     runBlocking {
         val orderJob = CoroutineScope(IO).launch {
-            println("Placing your order for ${listOf("Boiled vegetable Salad", "Mushroom curry", "Punjabi flat bread")}")
-            delay(3500)
-            val orderId = "ORDER_${Random(9999999).nextInt()}"
+            val orderId = prepareOrder(
+                listOf(
+                    "Boiled vegetable Salad",
+                    "Mushroom curry",
+                    "Punjabi flat bread"
+                )
+            )
             println("Your order has been placed, order id is $orderId")
         }
         orderJob.join()
     }
+}
+
+private suspend fun prepareOrder(orderList: List<String>): String {
+    println("Placing your order for $orderList")
+    delay(3000L)
+    return "ORDER_${Random(9999999).nextInt()}"
 }

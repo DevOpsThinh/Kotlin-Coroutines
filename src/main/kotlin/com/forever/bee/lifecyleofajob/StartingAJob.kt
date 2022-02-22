@@ -1,0 +1,26 @@
+/**
+ * Kotlin Coroutines: Creating a Job
+ * @author Nguyen Truong Thinh
+ * @since Kotlin 1.6 - Java 1.8 (Java 8)
+ * Contact me: nguyentruongthinhvn2020@gmail.com || +84393280504
+ * */
+package com.forever.bee.lifecyleofajob
+
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlin.random.Random
+
+fun main() {
+    runBlocking {
+        val orderJob = CoroutineScope(IO).launch {
+            println("Placing your order for ${listOf("Boiled vegetable Salad", "Mushroom curry", "Punjabi flat bread")}")
+            delay(3500)
+            val orderId = "ORDER_${Random(9999999).nextInt()}"
+            println("Your order has been placed, order id is $orderId")
+        }
+        orderJob.join()
+    }
+}
