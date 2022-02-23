@@ -1,5 +1,5 @@
 /**
- * An example: The process of constructing a high-rise building
+ * An example: The process of constructing a high-rise building.
  * @author Nguyen Truong Thinh
  * @since Kotlin 1.6 - Java 1.8 (Java 8)
  * Contact me: nguyentruongthinhvn2020@gmail.com || +84393280504
@@ -56,7 +56,6 @@ class Builder (val name: String, var floors: Int = 0, private val scope: Corouti
         delay(200L)
         speakThroughBullhorn("[${Thread.currentThread().name}] Floor number $floor is furnished")
     }
-
 
     fun speakThroughBullhorn(message: String) {
         println(message)

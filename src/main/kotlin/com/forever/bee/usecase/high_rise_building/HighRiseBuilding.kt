@@ -1,3 +1,9 @@
+/**
+ * An example: The process of constructing a high-rise building.
+ * @author Nguyen Truong Thinh
+ * @since Kotlin 1.6 - Java 1.8 (Java 8)
+ * Contact me: nguyentruongthinhvn2020@gmail.com || +84393280504
+ * */
 package com.forever.bee.usecase.high_rise_building
 
 import kotlinx.coroutines.*
@@ -13,13 +19,13 @@ class HighRiseBuilding {
             val cores = Runtime.getRuntime().availableProcessors()
 
             building.speakThroughBullhorn("The building of $name is started with $cores building machines engaged")
-            // Any orher phases can not be started until foundation is ready
+            // Any other phases can not be started until foundation is ready.
             building.makeFoundation().join()
 
             (1..floors).forEach {
                 var floorsNum = 0
                 try {
-                    // A floor should be raised before we can decorate it
+                    // A floor should be raised before we can decorate it,
                     floorsNum = building.buildingFloor(it)
                 } catch (e: Exception) {
                     building.speakThroughBullhorn(e.message ?: "")
@@ -33,7 +39,7 @@ class HighRiseBuilding {
                     }
                 }
 
-                // These decorations could be made at the same time.\
+                // These decorations could be made at the same time.
                 building.putTheWindows(it)
                 building.installDoors(it)
                 building.provideElectricity(it)
