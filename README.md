@@ -14,6 +14,9 @@ According to Coroutine Team, Java threads have below problems:
 - Dealing with race conditions can be a nightmare.
 #### => Coroutine has answered all the above problems & it also runs in parallel.
 
+### Used Software Info:
+Kotlin v1.6, IntelliJ IDEA Education Edition, JDK 1.8
+
 ### References
 - ##### https://github.com/Kotlin/kotlinx.coroutines
 - Anko-Coroutines: https://github.com/Kotlin/anko/wiki/Anko-Coroutines

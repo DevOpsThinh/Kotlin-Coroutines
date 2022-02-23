@@ -4,11 +4,10 @@
  * @since Kotlin 1.6 - Java 1.8 (Java 8)
  * Contact me: nguyentruongthinhvn2020@gmail.com || +84393280504
  * */
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import com.forever.bee.usecase.high_rise_building.HighRiseBuilding
+import kotlinx.coroutines.*
 
-fun main(args: Array<String>) {
+fun main() {
     orderMeal()
 }
 

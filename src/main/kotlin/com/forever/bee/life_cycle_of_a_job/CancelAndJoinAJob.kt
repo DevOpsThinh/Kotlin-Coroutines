@@ -4,7 +4,7 @@
  * @since Kotlin 1.6 - Java 1.8 (Java 8)
  * Contact me: nguyentruongthinhvn2020@gmail.com || +84393280504
  * */
-package com.forever.bee.lifecyleofajob
+package com.forever.bee.life_cycle_of_a_job
 
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.Default
