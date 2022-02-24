@@ -11,6 +11,24 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlin.random.Random
 
+fun getNumber(): Flow<String> = flow{
+    emit("1"); delay(500L)
+    emit("2"); delay(500L)
+    emit("3"); delay(500L)
+}
+
+fun getAlphabets(): Flow<String> = flow {
+    emit("A"); delay(750L)
+    emit("B"); delay(750L)
+    emit("C"); delay(750L)
+}
+
+fun getAlphabetsLower(): Flow<String> = flow {
+    emit("a"); delay(1000L)
+    emit("b"); delay(1000L)
+    emit("c"); delay(1000L)
+}
+
 fun downloadVideo(): Flow<Int> = flow {
     emit(20)
     delay(1000L)

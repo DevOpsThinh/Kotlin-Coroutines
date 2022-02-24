@@ -32,7 +32,7 @@ fun sumWithoutAsync() = runBlocking {
     println("Total time without coroutine: $totalTime")
 }
 /**
- * Four asynchronous tasks
+ * Five asynchronous tasks
  * */
 fun sumWithAsync() = runBlocking {
     val totalTime = measureTimeMillis {
