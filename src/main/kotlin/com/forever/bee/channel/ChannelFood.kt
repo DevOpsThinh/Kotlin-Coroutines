@@ -35,10 +35,10 @@ fun main() {
 //        for (fruit in fChannel) {
 //            println(fruit)
 //        }
-//        while (!fChannel.isClosedForReceive) {
-//            val fruit = fChannel.receive()
-//            println(fruit)
-//        }
+        while (!fChannel.isClosedForReceive) {
+            val fruit = fChannel.receive()
+            println(fruit)
+        }
 //        repeat(4) {
 //            val fruit = fChannel.receive()
 //            println(fruit)
