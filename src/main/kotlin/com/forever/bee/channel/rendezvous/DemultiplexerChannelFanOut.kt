@@ -5,11 +5,14 @@
  * @since Kotlin 1.6 - Java 1.8 (Java 8)
  * Contact me: nguyentruongthinhvn2020@gmail.com || +84393280504
  * */
-package com.forever.bee.channel
+package com.forever.bee.channel.rendezvous
 
+import com.forever.bee.channel.Characteristic
+import com.forever.bee.channel.Demultiplexer
+import com.forever.bee.channel.isVegetable
+import com.forever.bee.channel.produceItems
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
@@ -31,7 +34,7 @@ fun main() {
         // maps item
         val typeDemultiplexer = Demultiplexer(
             fChannel to { item: Characteristic ->
-                isFruit(item)
+                com.forever.bee.channel.isFruit(item)
             },
             vChannel to { item: Characteristic ->
                 isVegetable(item)

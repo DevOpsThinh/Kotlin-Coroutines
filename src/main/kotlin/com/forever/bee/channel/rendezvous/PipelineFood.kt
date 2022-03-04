@@ -5,8 +5,11 @@
  * @since Kotlin 1.6 - Java 1.8 (Java 8)
  * Contact me: nguyentruongthinhvn2020@gmail.com || +84393280504
  * */
-package com.forever.bee.channel
+package com.forever.bee.channel.rendezvous
 
+import com.forever.bee.channel.Characteristic
+import com.forever.bee.channel.Fruit
+import com.forever.bee.channel.Vegetable
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.produce
@@ -34,7 +37,7 @@ fun produceItemList() = GlobalScope.produce {
 fun isFruit(items: ReceiveChannel<Characteristic>) = GlobalScope.produce {
     for (item in items) {
         // send each item in the channel only if it is a fruit
-        if (isFruit(item)) {
+        if (com.forever.bee.channel.isFruit(item)) {
             send(item)
         }
     }
@@ -43,7 +46,7 @@ fun isFruit(items: ReceiveChannel<Characteristic>) = GlobalScope.produce {
 fun isRed(items: ReceiveChannel<Characteristic>) = GlobalScope.produce {
     for (item in items) {
         // send each item in the channel only if it is red color.
-        if (isRed(item)) {
+        if (com.forever.bee.channel.isRed(item)) {
             send(item)
         }
     }

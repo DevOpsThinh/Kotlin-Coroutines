@@ -23,6 +23,7 @@ interface Characteristic {
  * that evaluates true for it.
  * */
 class Demultiplexer<E>(vararg val rules: Rule<E>) {
+
     suspend fun consume(receiveChannel: ReceiveChannel<E>) {
         for (i in receiveChannel) {
             // receive the data from the channel
@@ -49,8 +50,12 @@ class Demultiplexer<E>(vararg val rules: Rule<E>) {
     }
 }
 
-data class Fruit(override val name: String, override val color: String): Characteristic
-data class Vegetable(override val name: String, override val color: String): Characteristic
+data class Fruit(override val name: String, override val color: String) : Characteristic {
+    companion object Fruits{
+        val fruits = arrayOf("Apple", "Tomatoes", "Banana", "Pear", "Grapes", "Strawberry")
+    }
+}
+data class Vegetable(override val name: String, override val color: String) : Characteristic
 
 //                                  Helper functions
 fun isFruit(item: Characteristic): Boolean = item is Fruit

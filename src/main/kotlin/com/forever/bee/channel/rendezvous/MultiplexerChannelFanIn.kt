@@ -5,8 +5,11 @@
  * @since Kotlin 1.6 - Java 1.8 (Java 8)
  * Contact me: nguyentruongthinhvn2020@gmail.com || +84393280504
  * */
-package com.forever.bee.channel
+package com.forever.bee.channel.rendezvous
 
+import com.forever.bee.channel.Characteristic
+import com.forever.bee.channel.isVegetable
+import com.forever.bee.channel.produceItems
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.channels.Channel
@@ -24,7 +27,7 @@ fun main() {
 
         launch {
             produceItems().forEach {
-                if (isFruit(it)) {
+                if (com.forever.bee.channel.isFruit(it)) {
                     fChannel.send(it)
                 }
             }
@@ -49,7 +52,7 @@ fun main() {
         }
 
         desChannel.consumeEach {
-            if (isFruit(it)) {
+            if (com.forever.bee.channel.isFruit(it)) {
                 println("${it.name} is a fruit.")
             } else if (isVegetable(it)) {
                 println("${it.name} is a vegetable.")
