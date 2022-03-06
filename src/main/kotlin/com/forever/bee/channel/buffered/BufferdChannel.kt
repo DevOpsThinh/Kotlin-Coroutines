@@ -2,7 +2,7 @@
  * Kotlin Coroutines: Channels (A simple abstraction that u can use to transfer a stream of
  * values between coroutines).
  * @author Nguyen Truong Thinh
- * @since Kotlin 1.6 - Java 1.8 (Java 8)
+ * @since Kotlin 1.6 - JDK 1.8 (Java 8)
  * Contact me: nguyentruongthinhvn2020@gmail.com || +84393280504
  * */
 package com.forever.bee.channel.buffered
