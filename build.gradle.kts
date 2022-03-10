@@ -24,6 +24,9 @@ dependencies {
 
     // Anko Coroutines
     implementation ("org.jetbrains.anko:anko-coroutines:0.10.8")
+
+    // Reactive programming - RxJava
+    implementation ("io.reactivex.rxjava2:rxjava:2.2.21")
 }
 
 tasks.withType<KotlinCompile> {
