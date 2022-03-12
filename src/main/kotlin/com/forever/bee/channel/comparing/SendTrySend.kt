@@ -8,9 +8,11 @@
 package com.forever.bee.channel.comparing
 
 import com.forever.bee.channel.Fruit
+import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+
+// import kotlinx.coroutines.channels.produce
+// import kotlin.random.Random
 
 fun main() {
     val kChannel = Channel<String>()
@@ -30,3 +32,25 @@ fun main() {
         println("Done!")
     }
 }
+//@OptIn(ExperimentalCoroutinesApi::class)
+//fun main() {
+//    val producer = GlobalScope.produce(capacity = 15) {
+////        while (isActive) {
+////            if (!isClosedForSend) {
+////                    val number = Random.nextInt(0, 30)
+////                if (trySend(number).isSuccess) {
+////                    println("$number sent.")
+////                } else {
+////                    println("$number discarded.")
+////                }
+////            }
+////        }
+//        while (isActive) {
+//
+//            val number = Random.nextInt(0, 30)
+//            send(number)
+//            println("$number sent.")
+//        }
+//    }
+//    Thread.sleep(150L)
+//}

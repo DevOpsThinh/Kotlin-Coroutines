@@ -7,30 +7,30 @@
  * @since Kotlin 1.6 - JDK 1.8 (Java 8)
  * Contact me: nguyentruongthinhvn2020@gmail.com || +84393280504
  * */
-package com.forever.bee.boardcast_channel
+package com.forever.bee.broadcast_channel
 
-import io.reactivex.subjects.BehaviorSubject
+import io.reactivex.subjects.PublishSubject
 
 fun main() {
     /**
-     * An instance of type [BehaviorSubject] is created & called foodyDual.
+     * An instance of type [PublishSubject] is created & called foody.
      * */
-    val foodyDual = BehaviorSubject.create<String>()
+    val foody = PublishSubject.create<String>()
     // start producing items, publish them using onNext(item) function.
-    foodyDual.apply {
+    foody.apply {
         onNext(fruits[0])
         onNext(fruits[1])
         onNext(fruits[2])
     }
-    // subscribe to items published from foodyDual using foodyDual.subscribe{}.
-    foodyDual.subscribe {
+    // subscribe to items published from foody using foody.subscribe{}.
+    foody.subscribe {
         println("Consumer 1: $it")
     }
-    foodyDual.subscribe {
+    foody.subscribe {
         println("Consumer 2: $it")
     }
 
-    foodyDual.apply {
+    foody.apply {
         onNext(fruits[3])
         onNext(fruits[4])
     }
@@ -38,5 +38,5 @@ fun main() {
     println("Press a key to exit.....")
     readLine()
     // signal completion of the subscription.
-    foodyDual.onComplete()
+    foody.onComplete()
 }

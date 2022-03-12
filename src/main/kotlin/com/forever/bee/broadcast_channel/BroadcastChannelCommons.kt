@@ -7,7 +7,7 @@
  * @since Kotlin 1.6 - JDK 1.8 (Java 8)
  * Contact me: nguyentruongthinhvn2020@gmail.com || +84393280504
  * */
-package com.forever.bee.boardcast_channel
+package com.forever.bee.broadcast_channel
 
 /**
  * The list of seven fruits
