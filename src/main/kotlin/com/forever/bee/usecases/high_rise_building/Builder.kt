@@ -4,7 +4,7 @@
  * @since Kotlin 1.6 - JDK 1.8 (Java 8)
  * Contact me: nguyentruongthinhvn2020@gmail.com || +84393280504
  * */
-package com.forever.bee.usecase.high_rise_building
+package com.forever.bee.usecases.high_rise_building
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
@@ -12,6 +12,13 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlin.random.Random
 
+/**
+ * A class that represents the activities involved in building a new high-rise.
+ *
+ * @param name name of a high-rise
+ * @param floors the numbers of the floors
+ * @param scope an instance of [CoroutineScope]
+ * */
 class Builder (val name: String, var floors: Int = 0, private val scope: CoroutineScope) {
 
     private val random = Random

@@ -27,10 +27,10 @@
  * @since Kotlin 1.6 - JDK 1.8 (Java 8)
  * Contact me: nguyentruongthinhvn2020@gmail.com || +84393280504
  * */
-package com.forever.bee.usecase.robot_powered_storage_system
+package com.forever.bee.usecases.robot_powered_storage_system
 
 /**
- * A model holding some data of a parcel.
+ * A model holding some data of a parcel. It's representing the entity Parcel (Package).
  *
  * @param id the unique identifier of a parcel.
  * @param name the name of a parcel.

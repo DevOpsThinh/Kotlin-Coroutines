@@ -4,7 +4,7 @@
  * @since Kotlin 1.6 - JDK 1.8 (Java 8)
  * Contact me: nguyentruongthinhvn2020@gmail.com || +84393280504
  * */
-package com.forever.bee.usecase.high_rise_building
+package com.forever.bee.usecases.high_rise_building
 
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.runBlocking
