@@ -1,5 +1,5 @@
 /**
- * Kotlin Coroutines - Use case: PingPongGame
+ * Kotlin Coroutines - Use case: Fibonacci with a slow algorithm.
  * References: https://www.manning.com/books/the-joy-of-kotlin
  * --------------------------------------------------------------------------------------------------------------------
  * Actor model: Another paradigm of multithreaded communication is when u are trying to delegate events to others,
@@ -28,43 +28,45 @@
  * @since Kotlin 1.6 - JDK 1.8 (Java 8)
  * Contact me: nguyentruongthinhvn2020@gmail.com || +84393280504
  * */
-package com.forever.bee.case_study.usecases.pingpong_referee
+package com.forever.bee.case_study.usecases.fibonacci_slow_algorithm
 
 import com.forever.bee.case_study.common.Result
 import com.forever.bee.case_study.actor_framework.AbstractActor
 import com.forever.bee.case_study.actor_framework.Actor
 
 /**
- * A model class that represents the entity player - The object way.
+ * A model class that represents the entity worker -> is stateless actor.
+ * It computes the result & sends it back to the sender to which is has received a reference (another actor).
  *
- * @param id The unique identifier of the entity player.
- * @param sound A message that's displayed by the players when they receive the ball.
- * @param referee An [Actor]<[Int]> that represents the referee object.
+ * @param id The unique identifier of the entity worker
  * */
-class Player(
-    id: String,
-    private val sound: String,
-    private val referee: Actor<Int>
-) : AbstractActor<Int>(id) {
+class Worker(id: String): AbstractActor<Int>(id) {
     override fun onReceive(message: Int, sender: Result<Actor<Int>>) {
-        /*
-        * The business part of the actor, meaning the part that does what the user expects to see.
-        * */
-        println("$sound - $message")
-        /*
-        * If the number of balls is greater than 10 => game is over, gives the ball back to the referee.
-        * Otherwise, sends it back to the other player if present.
-        * */
-        if (message >= 10) {
-            referee.tell(message, sender)
-        } else {
-            sender.forEach({ actor: Actor<Int> ->
-                actor.tell(message + 1, self())
-            },
-                /*
-                * If the other player isn't present, registers an issue with the referee.
-                * */
-                { referee.tell(message, sender) })
+        sender.forEach(onSuccess = {a: Actor<Int> ->
+            /*
+            * When the Worker receives a number, it reacts by computing the corresponding Fibonacci value and sending
+            * it back to the caller
+            * */
+            a.tell(fibonacciSlowAlgorithm(message), self())
+        })
+    }
+    private fun fibonacci(number: Int): Int {
+        tailrec fun fibonacci(acc1: Int, acc2: Int, x: Int): Int = when (x) {
+            0 -> 1
+            1 -> acc1 + acc2
+            else -> fibonacci(acc2, acc1 + acc2, x - 1)
+        }
+        return fibonacci(0, 1, number)
+    }
+    /**
+     * Create long-lasting tasks with an inefficient algorithm.
+     * */
+    private fun fibonacciSlowAlgorithm(number: Int): Int {
+        return when (number) {
+            0 -> 1
+            1 -> 1
+            else -> fibonacciSlowAlgorithm(number - 1) + fibonacciSlowAlgorithm(number - 2)
         }
     }
+
 }

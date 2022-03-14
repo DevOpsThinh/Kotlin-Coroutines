@@ -30,10 +30,11 @@
  * */
 package com.forever.bee.case_study.usecases.pingpong_referee
 
-import com.forever.bee.case_study.Result
+import com.forever.bee.case_study.common.Result
 import com.forever.bee.case_study.actor_framework.AbstractActor
 import com.forever.bee.case_study.actor_framework.Actor
 import java.util.concurrent.Semaphore
+
 // import kotlinx.coroutines.sync.Semaphore
 // import kotlinx.coroutines.runBlocking
 
@@ -86,7 +87,8 @@ fun main() {
 fun player(
     id: String,
     sound: String,
-    referee: Actor<Int> ) = object : AbstractActor<Int>(id) {
+    referee: Actor<Int>
+) = object : AbstractActor<Int>(id) {
     override fun onReceive(message: Int, sender: Result<Actor<Int>>) {
         /*
        * The business part of the actor, meaning the part that does what the user expects to see.

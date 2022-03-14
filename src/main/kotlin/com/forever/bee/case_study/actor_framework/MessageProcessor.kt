@@ -30,7 +30,7 @@
  * */
 package com.forever.bee.case_study.actor_framework
 
-import com.forever.bee.case_study.Result
+import com.forever.bee.case_study.common.Result
 
 /**
  * The [T] generic interface will be the interface you'll implement for any component that has to handle a received message.

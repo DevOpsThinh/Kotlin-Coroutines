@@ -1,8 +1,8 @@
-package com.forever.bee.case_study
+package com.forever.bee.case_study.common
 
 import java.io.Serializable
 
-sealed class Result<out A>: Serializable {
+sealed class Result<out A> : Serializable {
 
     abstract fun mapEmpty(): Result<Any>
 
@@ -52,19 +52,23 @@ sealed class Result<out A>: Serializable {
 
     abstract fun mapFailure(message: String): Result<A>
 
-    abstract fun forEach(onSuccess: (A) -> Unit = {},
-                         onFailure: (RuntimeException) -> Unit = {},
-                         onEmpty: () -> Unit = {})
+    abstract fun forEach(
+        onSuccess: (A) -> Unit = {},
+        onFailure: (RuntimeException) -> Unit = {},
+        onEmpty: () -> Unit = {}
+    )
 
-    internal object Empty: Result<Nothing>() {
+    internal object Empty : Result<Nothing>() {
 
         override fun mapEmpty(): Result<Any> = Result(Any())
 
         override fun isEmpty(): Boolean = true
 
-        override fun forEach(onSuccess: (Nothing) -> Unit,
-                             onFailure: (RuntimeException) -> Unit,
-                             onEmpty: () -> Unit) {
+        override fun forEach(
+            onSuccess: (Nothing) -> Unit,
+            onFailure: (RuntimeException) -> Unit,
+            onEmpty: () -> Unit
+        ) {
             onEmpty()
         }
 
@@ -77,39 +81,46 @@ sealed class Result<out A>: Serializable {
         override fun toString(): String = "Empty"
     }
 
-    internal class Failure<out A>(internal val exception: RuntimeException): Result<A>() {
+    internal class Failure<out A>(internal val exception: RuntimeException) : Result<A>() {
 
         override fun mapEmpty(): Result<Any> = failure(this.exception)
 
         override fun isEmpty(): Boolean = false
 
-        override fun forEach(onSuccess: (A) -> Unit,
-                             onFailure: (RuntimeException) -> Unit,
-                             onEmpty: () -> Unit) {
+        override fun forEach(
+            onSuccess: (A) -> Unit,
+            onFailure: (RuntimeException) -> Unit,
+            onEmpty: () -> Unit
+        ) {
             onFailure(exception)
         }
 
         override fun <B> map(f: (A) -> B): Result<B> = Failure(
-            exception)
+            exception
+        )
 
         override fun <B> flatMap(f: (A) -> Result<B>): Result<B> = Failure(
-            exception)
+            exception
+        )
 
         override fun mapFailure(message: String): Result<A> = Failure(
-            RuntimeException(message, exception))
+            RuntimeException(message, exception)
+        )
 
         override fun toString(): String = "Failure(${exception.message})"
     }
 
-    internal class Success<out A>(internal val value: A): Result<A>() {
+    internal class Success<out A>(internal val value: A) : Result<A>() {
 
         override fun mapEmpty(): Result<Nothing> = failure("Not empty")
 
         override fun isEmpty(): Boolean = false
 
-        override fun forEach(onSuccess: (A) -> Unit,
-                             onFailure: (RuntimeException) -> Unit,
-                             onEmpty: () -> Unit) {
+        override fun forEach(
+            onSuccess: (A) -> Unit,
+            onFailure: (RuntimeException) -> Unit,
+            onEmpty: () -> Unit
+        ) {
             onSuccess(value)
         }
 
@@ -144,13 +155,16 @@ sealed class Result<out A>: Serializable {
         operator fun <A> invoke(): Result<A> = Empty
 
         fun <A> failure(message: String): Result<A> = Failure(
-            IllegalStateException(message))
+            IllegalStateException(message)
+        )
 
         fun <A> failure(exception: RuntimeException): Result<A> = Failure(
-            exception)
+            exception
+        )
 
         fun <A> failure(exception: Exception): Result<A> = Failure(
-            IllegalStateException(exception))
+            IllegalStateException(exception)
+        )
 
         operator fun <A> invoke(a: A? = null, message: String): Result<A> = when (a) {
             null -> Failure(NullPointerException(message))
@@ -170,7 +184,8 @@ sealed class Result<out A>: Serializable {
             else -> when {
                 p(a) -> Success(a)
                 else -> Failure(
-                    IllegalArgumentException("Argument $a does not match condition: $message"))
+                    IllegalArgumentException("Argument $a does not match condition: $message")
+                )
             }
         }
 
@@ -183,9 +198,11 @@ sealed class Result<out A>: Serializable {
                 Result.failure(e)
             }
 
-        fun <T> of(predicate: (T) -> Boolean,
-                   value: T,
-                   message: String): Result<T> =
+        fun <T> of(
+            predicate: (T) -> Boolean,
+            value: T,
+            message: String
+        ): Result<T> =
             try {
                 if (predicate(value))
                     Result(value)
@@ -215,6 +232,8 @@ fun <A, B, C, D> lift3(f: (A) -> (B) -> (C) -> D): (Result<A>) -> (Result<B>) ->
         }
     }
 
-fun <A, B, C> map2(a: Result<A>,
-                   b: Result<B>,
-                   f: (A) -> (B) -> C): Result<C> = lift2(f)(a)(b)
+fun <A, B, C> map2(
+    a: Result<A>,
+    b: Result<B>,
+    f: (A) -> (B) -> C
+): Result<C> = lift2(f)(a)(b)

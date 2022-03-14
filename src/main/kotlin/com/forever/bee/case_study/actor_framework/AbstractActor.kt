@@ -30,7 +30,7 @@
  * */
 package com.forever.bee.case_study.actor_framework
 
-import com.forever.bee.case_study.Result
+import com.forever.bee.case_study.common.Result
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import java.util.concurrent.RejectedExecutionException
