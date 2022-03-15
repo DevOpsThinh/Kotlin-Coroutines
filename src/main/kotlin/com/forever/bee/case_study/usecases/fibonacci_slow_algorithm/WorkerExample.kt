@@ -40,8 +40,9 @@ import java.util.concurrent.Semaphore
 //                          The client application
 
 private val semaphore = Semaphore(1) // wait for the actors to complete their work (prevent program shut down).
-private const val listLength = 20_000 // the number of tasks
-private const val workers = 8
+//private const val listLength = 20_000 // the number of tasks
+private const val listLength = 500_000 // the number of tasks
+private const val workers = 2
 private val rnd = java.util.Random(0)
 private val testList =
     range(0, listLength).map { rnd.nextInt(35) }

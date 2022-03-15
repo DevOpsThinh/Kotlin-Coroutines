@@ -40,16 +40,21 @@ import com.forever.bee.case_study.actor_framework.Actor
  *
  * @param id The unique identifier of the entity worker
  * */
-class Worker(id: String): AbstractActor<Int>(id) {
-    override fun onReceive(message: Int, sender: Result<Actor<Int>>) {
-        sender.forEach(onSuccess = {a: Actor<Int> ->
+//class Worker(id: String) : AbstractActor<Int>(id) {
+class Worker(id: String) : AbstractActor<Pair<Int, Int>>(id) {
+    //    override fun onReceive(message: Int, sender: Result<Actor<Int>>) {
+//        sender.forEach(onSuccess = {a: Actor<Int> ->
+    override fun onReceive(message: Pair<Int, Int>, sender: Result<Actor<Pair<Int, Int>>>) {
+        sender.forEach(onSuccess = { a: Actor<Pair<Int, Int>> ->
             /*
             * When the Worker receives a number, it reacts by computing the corresponding Fibonacci value and sending
             * it back to the caller
             * */
-            a.tell(fibonacciSlowAlgorithm(message), self())
+//            a.tell(fibonacciSlowAlgorithm(message), self())
+            a.tell(Pair(fibonacci(message.first), message.second), self())
         })
     }
+
     private fun fibonacci(number: Int): Int {
         tailrec fun fibonacci(acc1: Int, acc2: Int, x: Int): Int = when (x) {
             0 -> 1
@@ -58,6 +63,7 @@ class Worker(id: String): AbstractActor<Int>(id) {
         }
         return fibonacci(0, 1, number)
     }
+
     /**
      * Create long-lasting tasks with an inefficient algorithm.
      * */
