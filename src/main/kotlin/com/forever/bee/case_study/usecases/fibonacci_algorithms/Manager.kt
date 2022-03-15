@@ -28,7 +28,7 @@
  * @since Kotlin 1.6 - JDK 1.8 (Java 8)
  * Contact me: nguyentruongthinhvn2020@gmail.com || +84393280504
  * */
-package com.forever.bee.case_study.usecases.fibonacci_slow_algorithm
+package com.forever.bee.case_study.usecases.fibonacci_algorithms
 
 import com.forever.bee.case_study.actor_framework.AbstractActor
 import com.forever.bee.case_study.actor_framework.Actor

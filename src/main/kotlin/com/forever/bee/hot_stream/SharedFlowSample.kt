@@ -7,10 +7,31 @@
  * */
 package com.forever.bee.hot_stream
 
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.Default
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.launch
+import javax.xml.crypto.Data
+
 //import androidx.lifecycle.ViewModel
 //import androidx.lifecycle.viewModelScope
 //import kotlinx.coroutines.*
 //import kotlinx.coroutines.flow.*
+
+private val _shareFlow = MutableSharedFlow<Data>()
+
+fun main() {
+    val sharedFlow: SharedFlow<Data> = _shareFlow.asSharedFlow()
+
+    CoroutineScope(Default).launch {
+        sharedFlow.collect { data ->
+            println(data)
+        }
+    }
+}
+
 //
 //sealed class SharedViewEffects {
 //    data class Prices(val prices: Int): SharedViewEffects()
