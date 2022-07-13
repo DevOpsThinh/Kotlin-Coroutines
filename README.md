@@ -1,3 +1,4 @@
+<strong><em>Thanks for your reading, please give me a STAR!<em><strong>
 ####  "It is far easier to design a class to be thread-safe than to retrofit it for thread safety later."<br>
 (Brian Goetz - Java concurrency: Publisher: Addison-Wesley Professional, Year: 2006; 2013)<br><br>
 <img src="img/coroutine.png" height="320" />
